@@ -6,6 +6,9 @@ const Login = () => {
   const [error,setError]=useState('')
 const { loginUser }= useContext(AuthContext)
 
+// password show/hide toggole 
+const [show,setShow] = useState(false)
+
 // route location set 
 const navigate =useNavigate();
 const location = useLocation()
@@ -80,7 +83,15 @@ else if (password.length<8){
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input required type="text" placeholder="password" id='password' className="input input-bordered" />
+          <input required type={show ? "text" : "password"} placeholder="password" id='password' className="input input-bordered" />
+    
+          <p onClick={() =>setShow(!show)}>
+             <small>
+              {
+                show ? <span>Hide password</span> :<span>Show Password</span>
+              }
+             </small>
+          </p>
           <label className="label">
             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
           </label>
